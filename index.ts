@@ -65,6 +65,7 @@ function sendMessage(message: string) {
 function refreshCheck(){   
     IsCheckPrintSuite = true;
     IsCheckPrintBranch = true;
+    IsCheckPrintResult = true;
 }
 
 // Error Handler
@@ -91,8 +92,7 @@ function handleMessage(message: string) {
         if (message.includes(runCommands[i])) {
             if (IsCheckPrintSuite) {
                 sendMessage('Введите SUITE: ');
-                IsCheckPrintSuite = false;
-                IsCheckPrintResult = true;
+                IsCheckPrintSuite = false;        
             }
         }
     }

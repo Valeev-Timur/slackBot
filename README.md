@@ -35,17 +35,19 @@
 
 В файле index.ts указать:
 
-token: можно взять на странице OAuth & Permissions настройки бота
+botToken: можно взять на странице OAuth & Permissions настройки бота
 
-name: имя бота которое указывали на 10 шаге при настройке бота
+botName: имя бота которое указывали на 10 шаге при настройке бота
 
-запустить команду tsc -w(дождаться компиляции)
+channel: название канала для общения с ботом
 
-также, необходимо указать следующие поля:
+также, необходимо указать следующие поля для запуска job в jenkins:
 
 username, token, jenkins_company
 	
 	для получения итоговой строки : var jenkins = jenkinsapi.init('https://username:token@jenkins.company.com');
+
+запустить команду tsc -w(дождаться компиляции)
 	
 
 # Установка пакетов
@@ -55,4 +57,4 @@ username, token, jenkins_company
 
 # Запуск скрипта
 
-npm start
+npm run start

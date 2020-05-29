@@ -5,7 +5,10 @@ var suite_1 = require("./params_module/suite");
 var branch_1 = require("./params_module/branch");
 var SlackBot = require("slackbots");
 var jenkinsapi = require('jenkins-api');
-var jenkins = jenkinsapi.init('');
+var username = ''; // testov
+var token = ''; // 1241241212
+var jenkins_company = ''; // jenkins.../job/...
+var jenkins = jenkinsapi.init('http://' + username + ':' + token + '@' + jenkins_company);
 var botName = 'BOT';
 var botToken = ''; // bot_token
 var channel = ''; // channel_name without #
@@ -40,7 +43,6 @@ var bot = new SlackBot({
     token: botToken,
     name: botName
 });
-// Start Hadler
 bot.on('start', function () {
     var message = 'Привет, я бот.';
     var params = {
@@ -57,7 +59,6 @@ function sendMessage(message) {
 function refreshCheck() {
     IsCheckPrintSuite = true;
     IsCheckPrintBranch = true;
-    IsCheckPrintResult = true;
 }
 // Error Handler
 bot.on('error', function (err) { return console.log(err); });
@@ -68,25 +69,21 @@ bot.on('message', function (data) {
     }
     handleMessage(data.text);
 });
-// class ProtractorParams {
-//     suite: string;
-//     agentname: string;
-//     branch: string;
-//     constructor() {
-//         this.suite;
-//         this.agentname;
-//         this.branch;
-//     }
-// }
 // Respons to Data
 function handleMessage(message) {
     var pieces = message.split(' ');
+    // if (message.includes(' jenkins')){
+    //     username = pieces[1];
+    //     token = pieces[2];
+    //     jenkins_company = pieces[3];        
+    // }
     // var protractorParams = new ProtractorParams();
     for (var i = 0; i < 4; i++) {
         if (message.includes(runCommands[i])) {
             if (IsCheckPrintSuite) {
                 sendMessage('Введите SUITE: ');
                 IsCheckPrintSuite = false;
+                IsCheckPrintResult = true;
             }
         }
     }

@@ -4,8 +4,11 @@ import { suiteParams } from "./params_module/suite";
 import { branchParams } from "./params_module/branch";
 var SlackBot = require("slackbots");
 var jenkinsapi = require('jenkins-api');
-var jenkins = jenkinsapi.init('');
-var botName = 'BOT';
+var username = ''; // testov
+var token = ''; // 1241241212
+var jenkins_company = ''; // jenkins.../job/...
+var jenkins = jenkinsapi.init('http://' + username +':' + token + '@' + jenkins_company );
+var botName = 'BOT'; 
 var botToken = ''; // bot_token
 var channel = ''; // channel_name without #
 var IsCheckPrintBranch = true;
@@ -44,7 +47,6 @@ var bot = new SlackBot({
     name: botName
 });
 
-// Start Hadler
 bot.on('start', function () {
     var message = 'Привет, я бот.';
     var params = {
@@ -60,10 +62,9 @@ function sendMessage(message: string) {
     bot.postMessageToChannel(channel, message, params);
 }
 
-function refreshCheck() {
+function refreshCheck(){   
     IsCheckPrintSuite = true;
     IsCheckPrintBranch = true;
-    IsCheckPrintResult = true;
 }
 
 // Error Handler
@@ -77,26 +78,21 @@ bot.on('message', function (data: { type: string; text: any; }) {
 });
 
 
-// class ProtractorParams {
-//     suite: string;
-//     agentname: string;
-//     branch: string;
-//     constructor() {
-//         this.suite;
-//         this.agentname;
-//         this.branch;
-//     }
-// }
-
 // Respons to Data
 function handleMessage(message: string) {
     let pieces = message.split(' ');
+    // if (message.includes(' jenkins')){
+    //     username = pieces[1];
+    //     token = pieces[2];
+    //     jenkins_company = pieces[3];        
+    // }
     // var protractorParams = new ProtractorParams();
     for (let i: number = 0; i < 4; i++) {
         if (message.includes(runCommands[i])) {
             if (IsCheckPrintSuite) {
                 sendMessage('Введите SUITE: ');
                 IsCheckPrintSuite = false;
+                IsCheckPrintResult = true;
             }
         }
     }
@@ -125,12 +121,12 @@ function handleMessage(message: string) {
         protractorParams.AGENTNAME = pieces[1];
         if (IsCheckPrintResult) {
             sendMessage("Автотесты запущены.\n" + "AGENTNAME: " + protractorParams.AGENTNAME + "\n" + "BRANCH: " + protractorParams.BRANCH + "\n" + "SUITE: " + protractorParams.SUITE);
-            IsCheckPrintResult = false;
+            IsCheckPrintResult = false;           
         }
         jenkins.build_with_params('protractor-external-tests', protractorParams, function (err: any, data: any) {
             if (err) { return console.log(err); }
             console.log(data)
         });
-    }
+    }  
 }
 

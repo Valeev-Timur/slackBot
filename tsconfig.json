@@ -4,7 +4,9 @@
         "sourceMap": true,
         "jsx": "react",
         "noImplicitAny": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
     },
     "exclude": [
         "node_modules"

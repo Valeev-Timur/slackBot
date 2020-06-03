@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-import { suiteParams } from "./params_module/suite";
-import { branchParams } from "./params_module/branch";
+import { suiteParams } from "../params_module/suite";
+import { branchParams } from "../params_module/branch";
+import { runCommands, forProtractor, forYandexTank } from "../called_params/startParams.json";
 var SlackBot = require("slackbots");
 var jenkinsapi = require('jenkins-api');
 var username = ''; // testov
@@ -10,7 +11,7 @@ var jenkins_company = ''; // jenkins.../job/...
 var jenkins = jenkinsapi.init('http://' + username +':' + token + '@' + jenkins_company );
 var botName = 'BOT'; 
 var botToken = ''; // bot_token
-var channel = ''; // channel_name without #
+var channel = 'random'; // channel_name without #
 var IsCheckPrintBranch = true;
 var IsCheckPrintAgentName = true;
 var IsCheckPrintResult = true;
@@ -20,26 +21,6 @@ var protractorParams = {
     'BRANCH': '',
     'AGENTNAME': ''
 };
-
-var runCommands = [
-    "запусти",
-    "запуск",
-    "выполни",
-    "run"
-];
-
-var forProtractor = [
-    "ui",
-    "автотесты",
-    "protractor тесты",
-    "protractor"
-];
-
-var forYandexTank = [
-    "нагрузку",
-    "performance",
-    "нагрузочный тест"
-];
 
 var bot = new SlackBot({
     token: botToken,
@@ -61,6 +42,7 @@ function sendMessage(message: string) {
     bot.postMessageToChannel(channel, message, params);
 }
 
+
 // Error Handler
 bot.on('error', function (err: any) { return console.log(err); });
 // Message Handler
@@ -75,12 +57,6 @@ bot.on('message', function (data: { type: string; text: any; }) {
 // Respons to Data
 function handleMessage(message: string) {
     let pieces = message.split(' ');
-    // if (message.includes(' jenkins')){
-    //     username = pieces[1];
-    //     token = pieces[2];
-    //     jenkins_company = pieces[3];        
-    // }
-    // var protractorParams = new ProtractorParams();
     for (let i: number = 0; i < 4; i++) {
         if (message.includes(runCommands[i])) {
             if (IsCheckPrintSuite) {

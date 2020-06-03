@@ -1,8 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.__esModule = true;
-var suite_1 = require("./params_module/suite");
-var branch_1 = require("./params_module/branch");
+var suite_1 = require("../params_module/suite");
+var branch_1 = require("../params_module/branch");
+var startParams_json_1 = require("../called_params/startParams.json");
 var SlackBot = require("slackbots");
 var jenkinsapi = require('jenkins-api');
 var username = ''; // testov
@@ -11,7 +12,7 @@ var jenkins_company = ''; // jenkins.../job/...
 var jenkins = jenkinsapi.init('http://' + username + ':' + token + '@' + jenkins_company);
 var botName = 'BOT';
 var botToken = ''; // bot_token
-var channel = ''; // channel_name without #
+var channel = 'random'; // channel_name without #
 var IsCheckPrintBranch = true;
 var IsCheckPrintAgentName = true;
 var IsCheckPrintResult = true;
@@ -21,23 +22,6 @@ var protractorParams = {
     'BRANCH': '',
     'AGENTNAME': ''
 };
-var runCommands = [
-    "запусти",
-    "запуск",
-    "выполни",
-    "run"
-];
-var forProtractor = [
-    "ui",
-    "автотесты",
-    "protractor тесты",
-    "protractor"
-];
-var forYandexTank = [
-    "нагрузку",
-    "performance",
-    "нагрузочный тест"
-];
 var bot = new SlackBot({
     token: botToken,
     name: botName
@@ -67,14 +51,8 @@ bot.on('message', function (data) {
 // Respons to Data
 function handleMessage(message) {
     var pieces = message.split(' ');
-    // if (message.includes(' jenkins')){
-    //     username = pieces[1];
-    //     token = pieces[2];
-    //     jenkins_company = pieces[3];        
-    // }
-    // var protractorParams = new ProtractorParams();
     for (var i = 0; i < 4; i++) {
-        if (message.includes(runCommands[i])) {
+        if (message.includes(startParams_json_1.runCommands[i])) {
             if (IsCheckPrintSuite) {
                 sendMessage('Введите SUITE: ');
                 IsCheckPrintSuite = false;

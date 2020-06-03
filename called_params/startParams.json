@@ -1,0 +1,24 @@
+{
+    "runCommands": [
+        "запусти",
+        "запуск",
+        "выполни",
+        "run"
+    ],
+    "forProtractor": [
+        "ui",
+        "автотесты",
+        "protractor тесты",
+        "protractor"
+    ],
+    "forYandexTank": [
+        "нагрузку",
+        "performance",
+        "нагрузочный тест"
+    ],
+    "protractorParams": [
+        "SUITE",
+        "BRANCH",
+        "AGENTNAME"
+    ]
+}

@@ -4,12 +4,13 @@
   "description": "helper",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node settings/index.js",
     "tsc:w": "tsc -w"
   },
   "author": "BoldinAO",
   "license": "ISC",
   "dependencies": {
+    "@types/jquery": "^3.3.38",
     "axios": "^0.19.2",
     "jenkins": "^0.28.0",
     "jenkins-api": "^0.3.1",

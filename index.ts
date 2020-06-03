@@ -8,14 +8,13 @@ var username = ''; // testov
 var token = ''; // 1241241212
 var jenkins_company = ''; // jenkins.../job/...
 var jenkins = jenkinsapi.init('http://' + username +':' + token + '@' + jenkins_company );
-var botName = ''; 
+var botName = 'BOT'; 
 var botToken = ''; // bot_token
 var channel = ''; // channel_name without #
 var IsCheckPrintBranch = true;
 var IsCheckPrintAgentName = true;
 var IsCheckPrintResult = true;
 var IsCheckPrintSuite = true;
-var isOver = true;
 var protractorParams = {
     'SUITE': '',
     'BRANCH': '',
@@ -60,12 +59,6 @@ function sendMessage(message: string) {
         icon_emoji: ':robot_face:'
     };
     bot.postMessageToChannel(channel, message, params);
-}
-
-function refreshCheck(){   
-    IsCheckPrintSuite = true;
-    IsCheckPrintBranch = true;
-    IsCheckPrintResult = true;
 }
 
 // Error Handler

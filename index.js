@@ -16,7 +16,6 @@ var IsCheckPrintBranch = true;
 var IsCheckPrintAgentName = true;
 var IsCheckPrintResult = true;
 var IsCheckPrintSuite = true;
-var isOver = true;
 var protractorParams = {
     'SUITE': '',
     'BRANCH': '',
@@ -56,10 +55,6 @@ function sendMessage(message) {
     };
     bot.postMessageToChannel(channel, message, params);
 }
-function refreshCheck() {
-    IsCheckPrintSuite = true;
-    IsCheckPrintBranch = true;
-}
 // Error Handler
 bot.on('error', function (err) { return console.log(err); });
 // Message Handler
@@ -83,7 +78,6 @@ function handleMessage(message) {
             if (IsCheckPrintSuite) {
                 sendMessage('Введите SUITE: ');
                 IsCheckPrintSuite = false;
-                IsCheckPrintResult = true;
             }
         }
     }

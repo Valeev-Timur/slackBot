@@ -16,7 +16,7 @@
         "performance",
         "нагрузочный тест"
     ],
-    "protractorParams": [
+    "protractorParams":[
         "SUITE",
         "BRANCH",
         "AGENTNAME"

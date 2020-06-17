@@ -47,7 +47,7 @@ username, token, jenkins_company
 	
 	для получения итоговой строки : var jenkins = jenkinsapi.init('https://username:token@jenkins.company.com');
 
-запустить команду tsc -w(дождаться компиляции)
+запустить команду tsc(дождаться компиляции)
 	
 
 # Установка пакетов

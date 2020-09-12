@@ -14,7 +14,7 @@
     "axios": "^0.19.2",
     "jenkins": "^0.28.0",
     "jenkins-api": "^0.3.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "slackbots": "^1.2.0"
   },
   "devDependencies": {
